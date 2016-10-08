@@ -1,38 +1,29 @@
-var blurred = false;
-window.onblur = function() { blurred = true; };
-window.onfocus = function() { blurred && (location.reload()); };
 
 $(document).ready(function(){
-	$('.button').mousedown(function(){
-		$(this).css("background","#aaaaaa");
+	socket.emit('BRequest', '');
+	socket.on('BSend', function(bases){
+		createBases(bases);
 	});
-	$('.button').mouseup(function(){
-		$(this).css("background","#344958");
-		window.location.href = $(this).attr("href");
+	$('.button').click(function(){
+		window.location.href = "play.html";
+	});
+	var socket = io();
+	socket.on('BSend', function(bases){
+		resetBases(bases);
 	});
 });
 
-/*function proportion()
+function createBases(bases)
 {
-	var wholeProp;
-	var props = [];
-	var full;
-	var current;
-	$('div[prop]').each(function() {
-    	fullProp = $(this).attr("prop");
-    	props = fullProp.split(" ");
-	    	for(var i = 1; i < props.length(); i+=2)
-	    	{
-	      	if(props[i]=="w")//width
-	      	{
-	    		full = $(window).width();
-	    		$(this).css("width", full*props[0]);
-	    	}
-	    	else if(props[i]=="h")//height
-	    	{
-	    		full = $(window).height();
-	    		$(this).css("height", full*props[1]);
-	    	}
-    	}
+	var i=0;
+	bases.forEach(function(){
+		$('#baseWrapper').append("<div class='base'><div style='background:"+bases[i].color+";' class='baseColor'></div>Base "+i+": <div id='base"+i+"'>"+bases[i].color+"</div></div>");
+		i++;
 	});
-}*/
+}
+function resetBases(bases)
+{
+	$('.base').each(function(){
+		$(this).html("<div style='background:"+bases[i].color+";' class='baseColor'></div>Base "+i+": <div id='base"+i+"'>"+bases[i].color+"</div>");
+	});
+}
