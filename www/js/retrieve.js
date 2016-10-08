@@ -3,9 +3,7 @@ nfc.addMimeTypeListener('flaggy', function(nfcEvent){
 
     for (var i = 0; i < records.length; i++){
         var record = records[i];
-        p = document.createElement('p');
-        p.innerHTML = nfc.bytesToString(record.payload);
-        display.appendChild(p);
+        socket.emit('nfcID', nfc.bytesToString(record.payload));
     }
 });
 
