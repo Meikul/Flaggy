@@ -20,7 +20,7 @@ body
 #title
 {
 	position: relative;
-	padding-top: 10%;
+	padding-top: 15%;
 	padding-bottom: 23%;
 	font-size:70px;
 }
@@ -32,4 +32,13 @@ body
 	border-top:1px solid #cccccc;
 	font-size:30px;
 	padding:16% 0;
+}
+.baseColor
+{
+	height:30px;
+	width:30px;
+}
+.base
+{
+	padding-top: 10px;
 }

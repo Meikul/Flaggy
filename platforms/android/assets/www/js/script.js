@@ -1,16 +1,29 @@
-var blurred = false;
-window.onblur = function() { blurred = true; };
-window.onfocus = function() { blurred && (location.reload()); };
 
 $(document).ready(function(){
-	// $('.button').mousedown(function(){
-	// 	$(this).css("background","#aaaaaa");
-	// });
-	// $('.button').mouseup(function(){
-	// 	$(this).css("background","#344958");
-	// 	window.location.href = $(this).attr("href");
-	// });
+	socket.emit('BRequest', '');
+	socket.on('BSend', function(bases){
+		createBases(bases);
+	});
 	$('.button').click(function(){
-		window.location.href = $(this).attr("href");
+		window.location.href = "play.html"; //$(this).attr("href");
+	});
+	var socket = io();
+	socket.on('BSend', function(bases){
+		resetBases(bases);
 	});
 });
+
+function createBases(bases)
+{
+	var i=0;
+	bases.forEach(function(){
+		$('#baseWrapper').append("<div class='base'><div style='background:"+bases[i].color+";' class='baseColor'></div>Base "+i+": <div id='base"+i+"'>"+bases[i].color+"</div></div>");
+		i++;
+	});
+}
+function resetBases(bases)
+{
+	$('.base').each(function(){
+		$(this).html("<div style='background:"+bases[i].color+";' class='baseColor'></div>Base "+i+": <div id='base"+i+"'>"+bases[i].color+"</div>");
+	});
+}
