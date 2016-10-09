@@ -24,7 +24,9 @@ io.on('connection', function(socket){
   });
 
   socket.on('nfcID', function(cardID){
-    
+      //Change base colors
+      
+      io.emit("BSend", bases);
   });
 });
 
