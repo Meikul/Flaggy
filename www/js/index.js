@@ -33,9 +33,3 @@ io.on('connection', function(socket){
 http.listen(3000, function(){
   console.log('listening on *:3000');
 });
-
-$(document).ready(function(){
-  $('.button').on("vmousedown",function(){
-    $(this).css('background','#344958')
-  });
-});

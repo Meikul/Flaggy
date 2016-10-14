@@ -1,23 +1,15 @@
 $(document).ready(function(){
-	var newTap=true;
-	$(document).on('tap',function(event){
-		if(newTap){
-			newTap = false;
-			switch(event.target.id){
-				case "base":
-					editBase(event.target);
-					break;
-				case "baseHeader":
-					createBase(event.clientX, event.clientY);
-					break;
-				case "delete":
-					$(event.target.parentNode.parentNode).remove();
-			}
+	$(document).on('vmousedown',function(event){
+		switch(event.target.id){
+			case "base":
+				editBase(event.target);
+				break;
+			case "baseHeader":
+				createBase(event.clientX, event.clientY);
+				break;
+			case "delete":
+				$(event.target.parentNode.parentNode).remove();
 		}
-	});
-	$(document).on('vmouseup',function(event){
-		newTap = true;
-		console.log("newTap");
 	});
 });
 
