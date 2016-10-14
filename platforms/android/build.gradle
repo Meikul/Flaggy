@@ -311,4 +311,3 @@ for (def func : cdvPluginPostBuildExtras) {
 if (hasProperty('postBuildExtras')) {
     postBuildExtras()
 }
-apply plugin: 'com.google.gms.google-services'
