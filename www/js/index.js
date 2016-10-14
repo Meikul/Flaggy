@@ -19,12 +19,15 @@ var io = require('socket.io')(http);
 
 
 io.on('connection', function(socket){
+  
   socket.on('BRequest', function(req){
       io.emit("BSend", bases);
   });
 
   socket.on('nfcID', function(cardID){
-    
+      //Change base colors
+
+      io.emit("BSend", bases);
   });
 });
 
